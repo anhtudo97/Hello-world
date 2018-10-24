@@ -1,0 +1,54 @@
+#include<stdio.h>
+ 
+void inputArray(int a[], int *pn) {
+    int i;
+    printf("nhap vao kich thuoc mang: ");
+    scanf("%d", pn);
+    for(i = 0; i < *pn; i++) {
+        printf("a[%d] = ", i);
+        scanf("%d", &a[i]);
+    }
+}
+void outputArray(int a[], int n) {
+    int i;
+    for(i = 0; i < n; i++) {
+        printf("%d\t", a[i]);
+    }
+}
+void print(int a[], int o, int k) {
+    int i;
+    for(i = o; i <= k; i++) {
+        printf("%d\t", a[i]);
+    }
+    printf("\n");
+}
+int Sum(int a[], int o, int k) {
+    int i, tong = 0;
+    for(i = o; i <= k; i++) {
+        tong += a[i];
+    }
+    return tong;
+}
+ 
+void processing(int a[], int n, int k) {
+    int i, j;
+    for(i = 0; i < n; i++) {
+        for(j = i; j < n; j++) {
+            if(Sum(a, i, j) == k) {
+                print(a, i, j);
+            }
+        }
+    }
+}
+ 
+main() {
+    int a[100], n = 0, k = 0;
+    inputArray(a, &n);
+    outputArray(a, n);
+    printf("\nInput value: ");
+    scanf("%d", &k);
+    printf("\n");
+    printf("We have:\n");
+    processing(a, n, k);
+    return 0;
+}
