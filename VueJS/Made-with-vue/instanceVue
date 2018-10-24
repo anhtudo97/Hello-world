@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <h1>{{ title }}</h1>
+        <h1>After conputed: {{ lowercaseTitile }}</h1>
+        <button @click="show">Show</button>
+        <p v-if="showParagraph">
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus nobis adipisci modi temporibus quia cupiditate qui suscipit, autem perferendis aperiam, tempora saepe vel dignissimos mollitia, aspernatur sunt praesentium magni facere?
+        </p>
+    </div>
+    <div id="app1">
+        <h1>{{ title }}</h1>
+        <button @click="changeTitle">Change</button>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.17/vue.js"></script>
+    <script>
+        var app = new Vue({
+            el: "#app",
+            data: {
+                title: 'The vue JS instance',
+                showParagraph: false
+            },
+            methods: {
+                show: function() {
+                    this.showParagraph = true;
+                    this.updateTitle('This is vue instance (update)');
+                },
+                updateTitle: function(title) {
+                    this.title = title;
+                }
+            },
+            computed: {
+                lowercaseTitile: function() {
+                    return this.title.toLowerCase();
+                }
+            },
+            watch: {
+                title: function(value) {
+                    alert(`Title changed, new value ${value}`);
+                }
+            }
+        });
+
+        var app1 = new Vue({
+            el: "#app1",
+            data: {
+                title: 'The second vue JS instance',
+                showParagraph: false
+            },
+            methods: {
+                changeTitle: function() {
+                    app.title = 'Abc'
+                }
+            }
+        });
+
+        setTimeout(function() {
+            app.title = 'Bo m doi roi nhe'
+        }, 3000);
+    </script>
+</body>
+
+
+</html>
